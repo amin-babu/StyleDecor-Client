@@ -6,20 +6,20 @@ import logo from '../assets/logo.png'
 const Navbar = () => {
 
   const links = <>
-    <li className='text-[13px] font-semibold'>
+    <li className='text-[13px] text-black/80 font-semibold'>
       <NavLink to='/'>Home</NavLink>
     </li>
-    <li className='text-[13px] font-semibold'>
-      <NavLink to='' end>Servicec</NavLink>
+    <li className='text-[13px] text-black/80 font-semibold'>
+      <NavLink to='' end>Service</NavLink>
     </li>
-    <li className='text-[13px] font-semibold'>
+    <li className='text-[13px] text-black/80 font-semibold'>
       <NavLink to=''>About</NavLink>
     </li>
-    <li className='text-[13px] font-semibold'>
+    <li className='text-[13px] text-black/80 font-semibold'>
       <NavLink to=''>Contact</NavLink>
     </li>
-    <li className='text-[13px] font-semibold md:hidden'>
-      <NavLink className={'btn-main'} to=''><IoMdLogIn size={20} /> Login</NavLink>
+    <li className='text-[13px] text-black/80 font-semibold md:hidden'>
+      <NavLink to='/login' className={'btn-main'}><IoMdLogIn size={20} /> Login</NavLink>
     </li>
   </>;
 
@@ -47,7 +47,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="space-x-3.5 hidden md:flex justify-end md:col-span-3">
-          <Link className='w-full btn-main'><IoMdLogIn size={20} /> Login</Link>
+          <Link to='/login' className='w-full btn-main'><IoMdLogIn size={20} /> Login</Link>
         </div>
       </div>
     </div>

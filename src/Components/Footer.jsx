@@ -1,13 +1,16 @@
+import { Link } from 'react-router';
 import logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-base-200 text-base-content pt-10">
+    <footer className="bg-base-200 border-t border-t-gray-300 text-base-content pt-10">
       <div className="w-11/12 mx-auto footer grid grid-cols-1 md:grid-cols-4">
 
         {/* Logo and About */}
         <div>
-          <img src={logo} alt="logo" className="h-18 mb-2" />
+          <Link to='/'>
+            <img src={logo} alt="logo" className="h-18 mb-2" />
+          </Link>
           <p className="text-[16px] text-gray-600">A modern appointment management system for a local decoration company that offers decoration services for homes and ceremonies.</p>
         </div>
 
