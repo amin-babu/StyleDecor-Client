@@ -2,8 +2,16 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import { IoMdLogIn } from "react-icons/io";
 import logo from '../assets/logo.png'
+import useAuth from '../Hooks/useAuth';
 
 const Navbar = () => {
+
+  const { user, logOut } = useAuth();
+
+  const logOutUser = () => {
+    logOut();
+    console.log('Log out successfull');
+  };
 
   const links = <>
     <li className='text-[13px] text-black/80 font-semibold'>
@@ -46,8 +54,35 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="space-x-3.5 hidden md:flex justify-end md:col-span-3">
-          <Link to='/login' className='w-full btn-main'><IoMdLogIn size={20} /> Login</Link>
+        <div className="space-x-3.5 hidden md:flex items-center justify-end md:col-span-3">
+
+          {
+            user ?
+              <>
+                <button className='btn'>
+                  <Link>Dashboard</Link>
+                </button>
+                <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-42 p-2 shadow border space-y-1.5 border-gray-200">
+                    <li className='border border-gray-200 rounded-md'><a>Profile</a></li>
+                    <li onClick={logOutUser} className='border border-gray-200 rounded-md'><a>Logout</a></li>
+                  </ul>
+                </div>
+              </> :
+              <>
+                <Link to='/login' className='w-full btn-main'><IoMdLogIn size={20} /> Login</Link>
+              </>
+          }
+
         </div>
       </div>
     </div>

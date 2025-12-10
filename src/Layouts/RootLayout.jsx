@@ -6,7 +6,7 @@ const RootLayout = () => {
   return (
     <div>
       <Navbar />
-      this is root RootLayout
+      <div className='text-right'>this is root RootLayout</div>
       <Footer />
     </div>
   );
