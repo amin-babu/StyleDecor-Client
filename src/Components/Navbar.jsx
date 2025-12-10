@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
 import { IoMdLogIn } from "react-icons/io";
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
 
@@ -17,10 +18,13 @@ const Navbar = () => {
     <li className='text-[13px] font-semibold'>
       <NavLink to=''>Contact</NavLink>
     </li>
+    <li className='text-[13px] font-semibold md:hidden'>
+      <NavLink className={'btn-main'} to=''><IoMdLogIn size={20} /> Login</NavLink>
+    </li>
   </>;
 
   return (
-    <div className="navbar bg-white/30 backdrop-blur-lg shadow-sm">
+    <div className="navbar px-0 bg-white/30 backdrop-blur-lg shadow-sm">
       <div className='w-11/12 mx-auto grid grid-cols-1 md:grid-cols-12 items-center'>
         <div className="flex items-center md:col-span-3">
           <div className="md:hidden dropdown">
@@ -33,7 +37,9 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className='btn'>StyleDecor</div>
+          <Link to='/'>
+            <img className='w-24' src={logo} alt="" />
+          </Link>
         </div>
         <div className="hidden md:justify-center md:flex md:col-span-6">
           <ul className="menu menu-horizontal px-1">
