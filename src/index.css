@@ -1,4 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
 @import "tailwindcss";
-@plugin "daisyui"{
-   themes: light --default;
- }
+
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #6B34FF;
+  /* --color-secondary: #03373D; */
+}
+
+.btn-main {
+  @apply btn bg-primary border px-3 font-[18px] border-primary h-0 py-4 shadow-none text-white;
+}
