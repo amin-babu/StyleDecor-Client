@@ -3,10 +3,12 @@ import { Link, NavLink } from 'react-router';
 import { IoMdLogIn } from "react-icons/io";
 import logo from '../assets/logo.png'
 import useAuth from '../Hooks/useAuth';
+import { LuCircleUserRound } from "react-icons/lu";
 
 const Navbar = () => {
 
   const { user, logOut } = useAuth();
+  console.log(user?.displayName);
 
   const logOutUser = () => {
     logOut();
@@ -26,9 +28,40 @@ const Navbar = () => {
     <li className='text-[13px] text-black/80 font-semibold'>
       <NavLink to=''>Contact</NavLink>
     </li>
-    <li className='text-[13px] text-black/80 font-semibold md:hidden'>
-      <NavLink to='/login' className={'btn-main'}><IoMdLogIn size={20} /> Login</NavLink>
-    </li>
+    <div>
+      {
+        user ?
+          <div className='md:hidden'>
+            <button className='btn'>
+              <Link>Dashboard</Link>
+            </button>
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                {
+                  user?.photoURL ?
+                    <div className="w-10 h-10 object-cover rounded-full">
+                      <img
+                        alt="User Avator"
+                        src={user?.photoURL} />
+                    </div> :
+                    <LuCircleUserRound size={27} />
+                }
+
+              </div>
+              <ul
+                tabIndex="-1"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-42 p-2 shadow border space-y-1.5 border-gray-200">
+                <li className='border border-gray-200 rounded-md'><a>Profile</a></li>
+                <li onClick={logOutUser} className='border border-gray-200 rounded-md'><a>Logout</a></li>
+              </ul>
+            </div>
+          </div> :
+          <><li className='text-[13px] text-black/80 font-semibold md:hidden'>
+            <NavLink to='/login' className={'btn-main'}><IoMdLogIn size={20} /> Login</NavLink>
+          </li></>
+      }
+    </div>
+
   </>;
 
   return (
@@ -59,16 +92,20 @@ const Navbar = () => {
           {
             user ?
               <>
-                <button className='btn'>
+                <button className='btn-two'>
                   <Link>Dashboard</Link>
                 </button>
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                      <img
-                        alt="Tailwind CSS Navbar component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
+                    {
+                      user?.photoURL ?
+                        <div className="w-10 h-10 object-cover rounded-full">
+                          <img
+                            alt="User Avator"
+                            src={user?.photoURL} />
+                        </div> :
+                        <LuCircleUserRound size={30} />
+                    }
                   </div>
                   <ul
                     tabIndex="-1"

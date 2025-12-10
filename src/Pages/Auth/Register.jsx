@@ -5,11 +5,12 @@ import { FaEye } from 'react-icons/fa';
 import { useForm } from "react-hook-form";
 import useAuth from '../../Hooks/useAuth';
 import { TbFidgetSpinner } from 'react-icons/tb';
+import { imageUpload } from '../../Utils';
 
 const Register = () => {
 
   const [show, setShow] = useState(false);
-  const { registerUser } = useAuth();
+  const { registerUser, setUser, user, signInGoogle, updateUserProfile } = useAuth();
 
   const {
     register,
@@ -17,20 +18,42 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = data => {
-    console.log(data);
-    const { email, password } = data;
+  const onSubmit = async data => {
+    const { name, image, email, password } = data;
+    const imageFile = image[0];
+    const imageLink = await imageUpload(imageFile);
+
+    const displayName = name;
+    const photoURL = imageLink;
 
     // creating user
     registerUser(email, password)
-      .then(res => {
-        console.log(res);
+      .then(result => {
+        const userInfo = result.user;
+        updateUserProfile({ displayName, photoURL })
+          .then(() => {
+            setUser({ ...userInfo, displayName, photoURL });
+          })
+          .catch(error => {
+            setUser(user);
+            console.log(error);
+          })
       })
       .catch(err => {
         console.log(err);
       })
 
 
+  };
+
+  const logInGoogle = () => {
+    signInGoogle()
+      .then(res => {
+        console.log('Google sign in successfull', res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   };
 
   return (
@@ -80,7 +103,12 @@ const Register = () => {
 
             {/* Photo Field */}
             <label className="label font-semibold text-lg text-[#403F3F]">Add Image</label>
-            <input type="file" className="file-input bg-base-200 border-0 w-full" placeholder="Your Photo" />
+            <input 
+            type="file" 
+            className="file-input bg-base-200 border-0 w-full" 
+            placeholder="Your Photo" 
+            {...register('image')}
+            />
 
             {/* password */}
             <div className='relative'>
@@ -126,7 +154,7 @@ const Register = () => {
             </div>
 
             {/* Google */}
-            <Link className="btn bg-white text-black border-[#e5e5e5]">
+            <Link onClick={logInGoogle} className="btn bg-white text-black border-[#e5e5e5]">
               <svg aria-label="Google logo" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
               Sign up with Google
             </Link>

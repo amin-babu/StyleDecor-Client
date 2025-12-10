@@ -20,3 +20,7 @@
 .btn-main {
   @apply btn bg-primary border px-3 font-[18px] border-primary h-0 py-4 shadow-none text-white;
 }
+
+.btn-two {
+  @apply btn border bg-base-200 px-3 font-[18px] border-gray-400 h-0 py-4 shadow-none text-gray-700;
+}
