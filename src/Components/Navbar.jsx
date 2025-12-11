@@ -16,22 +16,22 @@ const Navbar = () => {
   };
 
   const links = <>
-    <li className='text-[13px] text-black/80 font-semibold'>
+    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
       <NavLink to='/'>Home</NavLink>
     </li>
-    <li className='text-[13px] text-black/80 font-semibold'>
+    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
       <NavLink to='' end>Service</NavLink>
     </li>
-    <li className='text-[13px] text-black/80 font-semibold'>
+    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
       <NavLink to=''>About</NavLink>
     </li>
-    <li className='text-[13px] text-black/80 font-semibold'>
+    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
       <NavLink to=''>Contact</NavLink>
     </li>
     <div>
       {
         user ?
-          <div className='md:hidden'>
+          <div className='md:hidden border-gray-200'>
             <button className='btn'>
               <Link>Dashboard</Link>
             </button>
@@ -51,12 +51,12 @@ const Navbar = () => {
               <ul
                 tabIndex="-1"
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-42 p-2 shadow border space-y-1.5 border-gray-200">
-                <li className='border border-gray-200 rounded-md'><a>Profile</a></li>
+                <li className='border border-gray-200 rounded-md'><Link to='/profile'>Profile</Link></li>
                 <li onClick={logOutUser} className='border border-gray-200 rounded-md'><a>Logout</a></li>
               </ul>
             </div>
           </div> :
-          <><li className='text-[13px] text-black/80 font-semibold md:hidden'>
+          <><li className='text-[13px] text-black/80 border-gray-200 font-semibold md:hidden'>
             <NavLink to='/login' className={'btn-main'}><IoMdLogIn size={20} /> Login</NavLink>
           </li></>
       }
@@ -74,7 +74,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              className="menu menu-sm absolute dropdown-content bg-base-100 rounded-box z-9999 mt-3 w-52 p-2 shadow border border-gray-200 space-y-1.5">
               {links}
             </ul>
           </div>
@@ -110,7 +110,7 @@ const Navbar = () => {
                   <ul
                     tabIndex="-1"
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-42 p-2 shadow border space-y-1.5 border-gray-200">
-                    <li className='border border-gray-200 rounded-md'><a>Profile</a></li>
+                    <li className='border border-gray-200 rounded-md'><Link to='/profile'>Profile</Link></li>
                     <li onClick={logOutUser} className='border border-gray-200 rounded-md'><a>Logout</a></li>
                   </ul>
                 </div>
