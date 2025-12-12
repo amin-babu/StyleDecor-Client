@@ -57,7 +57,7 @@ const Register = () => {
   };
 
   return (
-    <div className='flex bg-[#f8f6f6] justify-center py-10'>
+    <div className='flex bg-[#f8f6f6] justify-center pb-10 pt-[100px]'>
       <div className="card bg-base-100 max-w-lg w-11/12 shrink-0 border border-gray-300">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <h3 className='text-center text-2xl md:text-4xl font-semibold'>Register your account</h3>

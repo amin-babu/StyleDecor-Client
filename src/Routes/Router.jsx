@@ -5,6 +5,7 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import Profile from "../Pages/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
+import Home from "../Pages/Home/Home";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        Component: Home
       },
       {
         path: '/profile',

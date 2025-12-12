@@ -65,7 +65,7 @@ const Navbar = () => {
   </>;
 
   return (
-    <div className="navbar px-0 bg-white/30 backdrop-blur-lg shadow-sm">
+    <div className="navbar fixed top-0 left-0 w-full z-50 px-0 bg-white/30 backdrop-blur-lg shadow-sm">
       <div className='w-11/12 mx-auto grid grid-cols-1 md:grid-cols-12 items-center'>
         <div className="flex items-center md:col-span-3">
           <div className="md:hidden dropdown">
