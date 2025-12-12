@@ -14,7 +14,12 @@
   name: "light";
   default: true;
   --color-primary: #018582;
-  /* --color-secondary: #03373D; */
+  --color-secondary: #041c3b;
+}
+
+.nav-menu a.active {
+  color: #026b69;
+  text-decoration: underline
 }
 
 .btn-main {

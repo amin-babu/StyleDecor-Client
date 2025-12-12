@@ -16,17 +16,17 @@ const Navbar = () => {
   };
 
   const links = <>
-    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
+    <li className='text-[16px] border-gray-200 border md:border-0 rounded-md text-secondary font-semibold'>
       <NavLink to='/'>Home</NavLink>
     </li>
-    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
-      <NavLink to='' end>Service</NavLink>
+    <li className='text-[16px] border-gray-200 border md:border-0 rounded-md text-secondary font-semibold'>
+      <NavLink to='/services' end>Service</NavLink>
     </li>
-    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
-      <NavLink to=''>About</NavLink>
+    <li className='text-[16px] border-gray-200 border md:border-0 rounded-md text-secondary font-semibold'>
+      <NavLink to='/about'>About</NavLink>
     </li>
-    <li className='text-[13px] border-gray-200 border md:border-0 rounded-md text-black/80 font-semibold'>
-      <NavLink to=''>Contact</NavLink>
+    <li className='text-[16px] border-gray-200 border md:border-0 rounded-md text-secondary font-semibold'>
+      <NavLink to='/contact'>Contact</NavLink>
     </li>
     <div>
       {
@@ -65,7 +65,7 @@ const Navbar = () => {
   </>;
 
   return (
-    <div className="navbar fixed top-0 left-0 w-full z-50 px-0 bg-white/30 backdrop-blur-lg shadow-sm">
+    <div className="navbar fixed top-0 left-0 w-full z-50 px-0 bg-base-100 shadow-sm">
       <div className='w-11/12 mx-auto grid grid-cols-1 md:grid-cols-12 items-center'>
         <div className="flex items-center md:col-span-3">
           <div className="md:hidden dropdown">
@@ -74,7 +74,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm absolute dropdown-content bg-base-100 rounded-box z-9999 mt-3 w-52 p-2 shadow border border-gray-200 space-y-1.5">
+              className="menu nav-menu menu-sm absolute dropdown-content bg-base-100 rounded-box z-9999 mt-3 w-52 p-2 shadow border border-gray-200 space-y-1.5">
               {links}
             </ul>
           </div>
@@ -83,7 +83,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:justify-center md:flex md:col-span-6">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu nav-menu menu-horizontal px-1">
             {links}
           </ul>
         </div>
