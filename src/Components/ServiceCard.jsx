@@ -13,7 +13,7 @@ const ServiceCard = ({ service }) => {
   } = service;
 
   return (
-    <Link>
+    <Link to='/'>
       <div className="card bg-base-100 shadow-md rounded-md p-3 space-y-1 hover:shadow-lg transition-all">
 
         {/* Image */}
@@ -50,7 +50,7 @@ const ServiceCard = ({ service }) => {
 
         {/* CTA Button */}
         <Link
-          
+          to='/fgh'
           className="block mt-2 w-full text-center bg-primary hover:bg-[#169994] text-white py-2 rounded-md font-medium transition"
         >
           View Details

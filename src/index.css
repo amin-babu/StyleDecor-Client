@@ -29,3 +29,16 @@
 .btn-two {
   @apply btn border bg-base-200 px-3 font-[18px] border-gray-400 h-0 py-4 shadow-none text-gray-700;
 }
+
+.title{
+  @apply text-center text-secondary mb-2 text-2xl md:text-4xl font-bold;
+}
+
+.sub-title{
+  @apply text-center text-[14px] md:text-lg max-w-[85%] md:max-w-auto mx-auto;
+}
+
+.leaflet-container {
+  width: 100% !important;
+  height: 400px !important;
+}

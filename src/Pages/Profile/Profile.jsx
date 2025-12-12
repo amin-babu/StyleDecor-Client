@@ -6,7 +6,7 @@ const Profile = () => {
 
   return (
     
-    <div className="w-full max-w-3xl mx-auto p-4 ">
+    <div className="w-full max-w-3xl mx-auto px-4 pt-24 pb-10">
       {/* Cover */}
       <div className="w-full h-40 rounded-xl overflow-hidden -z-20 relative">
         <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1200&q=60" alt="cover" className="w-full h-full object-cover" />

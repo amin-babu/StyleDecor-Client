@@ -36,7 +36,7 @@ const HeroSection = () => {
             className="text-white/80 text-lg md:text-xl mt-5"
           >
             Premium decoration services for weddings, birthdays, and corporate
-            events — crafted by top-rated decorators.
+            events - crafted by top-rated decorators.
           </motion.p>
 
           {/* CTA Button */}
