@@ -15,11 +15,11 @@ const CoverageMap = () => {
   ];
 
   return (
-    <div className="py-10">
-      <h2 className="text-3xl md:text-4xl font-bold text-center">
+    <div className="pb-20">
+      <h2 className="title">
         Service Coverage Area
       </h2>
-      <p className="text-center text-gray-600 mt-1">
+      <p className="text-center text-[14px] md:text-lg max-w-[85%] md:max-w-auto mx-auto mt-1">
         We provide decoration services across major areas in Chittagong.
       </p>
 
