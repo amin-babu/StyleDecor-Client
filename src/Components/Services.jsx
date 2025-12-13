@@ -3,6 +3,7 @@ import ServiceCard from './ServiceCard';
 import { useState } from 'react';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useEffect } from 'react';
+import { Link } from 'react-router';
 
 const Services = () => {
 
@@ -28,6 +29,12 @@ const Services = () => {
         {services.map((service) => (
           <ServiceCard key={service.id} service={service} />
         ))}
+      </div>
+
+      <div className='flex justify-center pt-10'>
+        <button className="btn-main">
+          <Link to='/services'>All Decoration Services</Link>
+        </button>
       </div>
     </div>
   );

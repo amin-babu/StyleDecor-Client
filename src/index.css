@@ -23,7 +23,7 @@
 }
 
 .btn-main {
-  @apply btn bg-primary border px-3 font-[18px] border-primary h-0 py-4 shadow-none text-white;
+  @apply btn bg-primary border px-3 font-[18px] border-primary h-0 py-4 shadow-none text-white hover:bg-[#169994];
 }
 
 .btn-two {

@@ -51,7 +51,7 @@ const ServiceCard = ({ service }) => {
         {/* CTA Button */}
         <Link
           to='/fgh'
-          className="block mt-2 w-full text-center bg-primary hover:bg-[#169994] text-white py-2 rounded-md font-medium transition"
+          className="btn-main mt-3"
         >
           View Details
         </Link>
