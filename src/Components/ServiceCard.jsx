@@ -14,7 +14,7 @@ const ServiceCard = ({ service }) => {
   } = service;
 
   return (
-    <Link to='/'>
+    <div>
       <div className="card bg-base-100 shadow-md rounded-md p-3 space-y-1 hover:shadow-lg transition-all">
 
         {/* Image */}
@@ -59,7 +59,7 @@ const ServiceCard = ({ service }) => {
           </Link>
         </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
