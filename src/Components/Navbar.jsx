@@ -4,6 +4,7 @@ import { IoMdLogIn } from "react-icons/io";
 import logo from '../assets/logo.png'
 import useAuth from '../Hooks/useAuth';
 import { LuCircleUserRound } from "react-icons/lu";
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
 
@@ -13,6 +14,7 @@ const Navbar = () => {
   const logOutUser = () => {
     logOut();
     console.log('Log out successfull');
+    toast.success('Log out Successfull');
   };
 
   const links = <>

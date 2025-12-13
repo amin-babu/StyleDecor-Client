@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { IoEyeOff } from 'react-icons/io5';
 import { FaEye } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
 
   const [show, setShow] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
   const { signInUser, signInGoogle } = useAuth();
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,10 +26,13 @@ const Login = () => {
       .then(res => {
         setInvalidPassword(false);
         console.log('Log in success', res);
+        navigate(location?.state || '/');
+        toast.success('Log in success');
       })
       .catch(err => {
         setInvalidPassword(true);
         console.log(err);
+        toast.error('Can not login');
       })
 
   };
@@ -36,9 +41,12 @@ const Login = () => {
     signInGoogle()
       .then(res => {
         console.log('Google sign in successfull', res);
+        navigate(location?.state || '/');
+        toast.success('Log in success');
       })
       .catch(err => {
         console.log(err);
+        toast.error('Can not login');
       })
   };
 

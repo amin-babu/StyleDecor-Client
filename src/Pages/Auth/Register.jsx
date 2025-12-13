@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { IoEyeOff } from 'react-icons/io5';
 import { FaEye } from 'react-icons/fa';
 import { useForm } from "react-hook-form";
 import useAuth from '../../Hooks/useAuth';
 import { TbFidgetSpinner } from 'react-icons/tb';
 import { imageUpload } from '../../Utils';
+import toast from 'react-hot-toast';
 
 const Register = () => {
 
   const [show, setShow] = useState(false);
   const { registerUser, setUser, user, signInGoogle, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -33,10 +36,13 @@ const Register = () => {
         updateUserProfile({ displayName, photoURL })
           .then(() => {
             setUser({ ...userInfo, displayName, photoURL });
+            navigate(location?.state || '/');
+            toast.success('Register Successfull');
           })
           .catch(error => {
             setUser(user);
             console.log(error);
+            toast.error("Can not Register");
           })
       })
       .catch(err => {
@@ -50,9 +56,12 @@ const Register = () => {
     signInGoogle()
       .then(res => {
         console.log('Google sign in successfull', res);
+        navigate(location?.state || '/');
+        toast.success('Register Successfull');
       })
       .catch(err => {
         console.log(err);
+        toast.error("Can not Register");
       })
   };
 
@@ -103,11 +112,11 @@ const Register = () => {
 
             {/* Photo Field */}
             <label className="label font-semibold text-lg text-[#403F3F]">Add Image</label>
-            <input 
-            type="file" 
-            className="file-input bg-base-200 border-0 w-full" 
-            placeholder="Your Photo" 
-            {...register('image')}
+            <input
+              type="file"
+              className="file-input bg-base-200 border-0 w-full"
+              placeholder="Your Photo"
+              {...register('image')}
             />
 
             {/* password */}

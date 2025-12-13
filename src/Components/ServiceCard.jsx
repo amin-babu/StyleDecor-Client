@@ -5,6 +5,7 @@ import ratingIcon from "../assets/icon-ratings.png";
 
 const ServiceCard = ({ service }) => {
   const {
+    _id,
     title,
     shortDescription,
     imageUrl,
@@ -49,12 +50,14 @@ const ServiceCard = ({ service }) => {
         </div>
 
         {/* CTA Button */}
-        <Link
-          to='/fgh'
+        <button
           className="btn-main mt-3"
         >
-          View Details
-        </Link>
+          <Link
+            to={`/services/${_id}`}>
+            View Details
+          </Link>
+        </button>
       </div>
     </Link>
   );
