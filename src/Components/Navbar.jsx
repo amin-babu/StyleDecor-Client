@@ -35,7 +35,7 @@ const Navbar = () => {
         user ?
           <div className='md:hidden border-gray-200'>
             <button className='btn'>
-              <Link>Dashboard</Link>
+              <Link to='/dashboard'>Dashboard</Link>
             </button>
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -58,8 +58,8 @@ const Navbar = () => {
               </ul>
             </div>
           </div> :
-          <><li className='text-[13px] text-black/80 border-gray-200 font-semibold md:hidden'>
-            <NavLink to='/login' className={'btn-main'}><IoMdLogIn size={20} /> Login</NavLink>
+          <><li className='text-[13px] text-white border-gray-200 font-semibold md:hidden'>
+            <Link to='/login' className={'btn-main'}><IoMdLogIn size={20} /> Login</Link>
           </li></>
       }
     </div>
@@ -95,7 +95,7 @@ const Navbar = () => {
             user ?
               <>
                 <button className='btn-two'>
-                  <Link>Dashboard</Link>
+                  <Link to='/dashboard'>Dashboard</Link>
                 </button>
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

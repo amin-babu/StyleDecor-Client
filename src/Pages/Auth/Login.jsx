@@ -51,8 +51,8 @@ const Login = () => {
   };
 
   return (
-    <div className='bg-[#f8f6f6] pb-10 pt-[100px] flex justify-center items-center'>
-      <div className="card bg-base-100 max-w-md w-11/12 shrink-0 border border-gray-300">
+    <div className='bg-[#f8f6f6] pb-10 md:pt-[100px] flex justify-center items-center'>
+      <div className="card bg-base-100 max-w-md w-full shrink-0 border border-gray-300">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <h3 className='text-center text-2xl md:text-4xl font-semibold'>Login your account</h3>
           <div className='border-b border-b-base-300 my-4'></div>

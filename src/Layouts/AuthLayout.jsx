@@ -12,8 +12,8 @@ const AuthLayout = () => {
       </nav>
       <div className=' bg-[#f8f6f6]'>
         <div className='grid grid-cols-1 w-11/12 mx-auto items-center justify-evenly md:grid-cols-2'>
-          <div className='bg-[#f8f6f6]'>
-            <img className='w-[90%] mx-auto' src={loginVector} alt="" />
+          <div className='bg-[#f8f6f6] pt-18'>
+            <img className='w-full mx-auto' src={loginVector} alt="" />
           </div>
           <div>
             <Outlet></Outlet>

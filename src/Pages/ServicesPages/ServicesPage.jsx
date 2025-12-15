@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import ServiceCard from '../../Components/ServiceCard';
+import Loading from '../../Components/Loading';
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
   const axiosSecure = useAxiosSecure();
-
+  const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState("");
@@ -16,8 +17,12 @@ const ServicesPage = () => {
     axiosSecure.get("/services")
       .then(res => {
         setServices(res.data);
+        setLoading(false);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
   }, [axiosSecure]);
 
   const filteredServices = services.filter(service => {
@@ -88,11 +93,15 @@ const ServicesPage = () => {
         </div>
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {filteredServices.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
+        {
+          loading ? <Loading /> : (
+            <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {filteredServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </div>
+          )
+        }
       </div>
     </div>
   );

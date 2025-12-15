@@ -8,6 +8,11 @@ import PrivateRoute from "./PrivateRoute";
 import Home from "../Pages/Home/Home";
 import ServicesPage from "../Pages/ServicesPages/ServicesPage";
 import ServiceDetails from "../Pages/ServicesPages/ServiceDetails";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
+import DashboardHome from "../Pages/DashBoard/DashboardHome";
+import MyProfile from "../Pages/DashBoard/MyProfile";
+import MyBookings from "../Pages/DashBoard/MyBookings";
+import PaymentHistory from "../Pages/DashBoard/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +50,30 @@ export const router = createBrowserRouter([
       {
         path: '/register',
         Component: Register
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute>
+      <DashBoardLayout></DashBoardLayout>
+    </PrivateRoute>,
+    children: [
+      {
+        index: true,
+        Component: DashboardHome
+      },
+      {
+        path: 'my-profile',
+        Component: MyProfile
+      },
+      {
+        path: 'my-booking',
+        Component: MyBookings
+      },
+      {
+        path: 'payment-history',
+        Component: PaymentHistory
       }
     ]
   }
