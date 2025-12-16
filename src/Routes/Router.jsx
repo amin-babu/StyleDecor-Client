@@ -13,6 +13,8 @@ import DashboardHome from "../Pages/DashBoard/DashboardHome";
 import MyProfile from "../Pages/DashBoard/MyProfile";
 import MyBookings from "../Pages/DashBoard/MyBookings";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory";
+import PaymentSuccess from "../Pages/DashBoard/PaymentSuccess";
+import PaymentCancel from "../Pages/DashBoard/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +76,14 @@ export const router = createBrowserRouter([
       {
         path: 'payment-history',
         Component: PaymentHistory
+      },
+      {
+        path: 'payment-success',
+        Component: PaymentSuccess
+      },
+      {
+        path: 'payment-cancelled',
+        Component: PaymentCancel
       }
     ]
   }

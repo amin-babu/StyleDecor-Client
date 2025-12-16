@@ -24,6 +24,8 @@ const ServiceDetails = () => {
       .catch(err => console.error(err));
   }, [axiosSecure, id]);
 
+  console.log(service?._id);
+
   const handleBookNow = () => {
     if (!user) {
       navigate("/login", { state: location.pathname })
@@ -40,6 +42,7 @@ const ServiceDetails = () => {
       serviceName: service.title,
       serviceId: service._id,
       serviceDate: data.bookingDate,
+      servicePrice: service.price,
       bookingCreatedAt: new Date(),
       location: data.location,
       status: "pending",
