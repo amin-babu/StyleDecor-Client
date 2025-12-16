@@ -1,13 +1,10 @@
 import React from 'react';
+import useAuth from '../../Hooks/useAuth';
 
 const MyProfile = () => {
 
-  const user = {
-    name: "Badrul Amin",
-    email: "badrul@example.com",
-    role: "User",
-    photo: "https://i.ibb.co/2kR9Y0z/avatar.png",
-  };
+
+  const {user} = useAuth();
 
   return (
     <div className="p-6 bg-gray-50 h-[70vh]">
@@ -21,14 +18,14 @@ const MyProfile = () => {
         <div className="relative p-6">
           <div className="flex justify-center -mt-16 mb-4">
             <img
-              src={user.photo}
+              src={user?.photoURL}
               alt="Profile"
               className="w-32 h-32 rounded-full object-cover border-4 border-white shadow"
             />
           </div>
 
           <div className="text-center space-y-2">
-            <h2 className="text-xl font-semibold text-gray-800">{user.name}</h2>
+            <h2 className="text-xl font-semibold text-gray-800">{user?.displayName}</h2>
             <p className="text-gray-500">{user.email}</p>
             <span className="inline-block mt-2 px-4 py-1 text-sm rounded-full bg-blue-100 text-blue-600">
               {user.role}

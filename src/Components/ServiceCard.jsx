@@ -50,14 +50,12 @@ const ServiceCard = ({ service }) => {
         </div>
 
         {/* CTA Button */}
-        <button
+        <Link
+          to={`/services/${_id}`}
           className="btn-main mt-3"
         >
-          <Link
-            to={`/services/${_id}`}>
-            View Details
-          </Link>
-        </button>
+          View Details
+        </Link>
       </div>
     </div>
   );

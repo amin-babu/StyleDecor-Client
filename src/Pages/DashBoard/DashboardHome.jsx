@@ -1,9 +1,30 @@
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Loading from "../../Components/Loading";
+
 const DashboardHome = () => {
-  const stats = {
-    totalBookings: 12,
-    pending: 4,
-    earnings: 18500,
-  };
+
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: bookings = [], isLoading } = useQuery({
+    queryKey: ['myBookings', user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/bookings?email=${user.email}`);
+      return res.data;
+    }
+  });
+
+  const pendingData = bookings.filter(booking => booking.status === 'pending');
+  const totalPayment = bookings
+    .filter(booking => booking.status !== "pending")
+    .reduce((sum, booking) => sum + Number(booking.servicePrice), 0);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="p-6 bg-gray-50 h-[70vh]">
@@ -14,21 +35,21 @@ const DashboardHome = () => {
         {/* Total Bookings */}
         <div className="rounded-2xl p-6 shadow bg-linear-to-r from-blue-500 to-blue-600 text-white">
           <p className="text-sm opacity-90">Total Bookings</p>
-          <h2 className="text-3xl font-bold mt-2">{stats.totalBookings}</h2>
+          <h2 className="text-3xl font-bold mt-2">{bookings.length}</h2>
         </div>
 
 
         {/* Pending */}
         <div className="rounded-2xl p-6 shadow bg-linear-to-r from-orange-400 to-orange-500 text-white">
           <p className="text-sm opacity-90">Pending</p>
-          <h2 className="text-3xl font-bold mt-2">{stats.pending}</h2>
+          <h2 className="text-3xl font-bold mt-2">{pendingData.length}</h2>
         </div>
 
 
-        {/* Earnings */}
+        {/* Total Payment */}
         <div className="rounded-2xl p-6 shadow bg-linear-to-r from-emerald-500 to-emerald-600 text-white">
-          <p className="text-sm opacity-90">Earnings</p>
-          <h2 className="text-3xl font-bold mt-2">৳ {stats.earnings}</h2>
+          <p className="text-sm opacity-90">Total Payment</p>
+          <h2 className="text-3xl font-bold mt-2">৳ {totalPayment}</h2>
         </div>
       </div>
     </div>

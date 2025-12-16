@@ -1,23 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Loading from "../../Components/Loading";
+
 const PaymentHistory = () => {
-  
-  const payments = [
-    {
-      id: 1,
-      serviceName: "Wedding Decoration",
-      amount: 15000,
-      date: "12 Aug 2025",
-      transactionId: "txn_9XK12AB",
-      status: "Paid",
-    },
-    {
-      id: 2,
-      serviceName: "Home Decoration",
-      amount: 3500,
-      date: "05 Aug 2025",
-      transactionId: "txn_7PQ45CD",
-      status: "Paid",
-    },
-  ];
+
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: payments = [], isLoading } = useQuery({
+    queryKey: ['paymentHistory', user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/payments?email=${user.email}`);
+      return res.data;
+    }
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="p-6">
@@ -40,14 +42,14 @@ const PaymentHistory = () => {
           {/* Table Body */}
           <tbody>
             {payments.map((payment, index) => (
-              <tr key={payment.id} className="hover">
+              <tr key={payment._id} className="hover">
                 <td>{index + 1}</td>
                 <td className="font-medium">{payment.serviceName}</td>
-                <td>৳ {payment.amount}</td>
-                <td>{payment.date}</td>
+                <td>৳ {payment?.amount}</td>
+                <td>{payment.paidAt?.slice(0, 10)}</td>
                 <td className="font-mono text-sm">{payment.transactionId}</td>
                 <td>
-                  <span className="badge badge-success">{payment.status}</span>
+                  <span className="badge badge-success">{payment.paymentStatus}</span>
                 </td>
               </tr>
             ))}

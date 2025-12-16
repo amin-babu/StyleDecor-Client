@@ -3,20 +3,30 @@ import { useEffect } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { Link, useSearchParams } from 'react-router';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useState } from 'react';
+import { useRef } from 'react';
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
+  const [paymentInfo, setPaymentInfo] = useState({});
   const sessionId = searchParams.get('session_id');
-  console.log(sessionId);
+  // console.log(sessionId);
   const axiosSecure = useAxiosSecure();
 
+  const called = useRef(false);
+
   useEffect(() => {
-    if (sessionId) {
-      axiosSecure.patch(`/payment-success?session_id=${sessionId}`)
-        .then(res => {
-          console.log(res.data);
-        })
-    }
+    if (!sessionId || called.current) return;
+
+    called.current = true;
+
+    axiosSecure.patch(`/payment-success?session_id=${sessionId}`)
+      .then(res => {
+        setPaymentInfo({
+          transactionId: res.data.transactionId,
+          trackingId: res.data.trackingId
+        });
+      });
   }, [sessionId, axiosSecure]);
 
   return (
@@ -40,8 +50,11 @@ const PaymentSuccess = () => {
 
           {/* Info Box */}
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+            <p className="text-sm mb-1 text-green-700">
+              Transaction ID: {paymentInfo.transactionId}
+            </p>
             <p className="text-sm text-green-700">
-              You can view all payment details from your payment history.
+              Tracking ID: {paymentInfo.trackingId}
             </p>
           </div>
 
