@@ -128,7 +128,7 @@ const MyBookings = () => {
                       <button onClick={() => handleCancelBooking(booking._id)} className="btn-two btn-sm btn-error">Cancel</button>
                     </>
                   ) : (
-                    <span className="font-medium badge badge-success">Paid</span>
+                    <span className="font-medium badge badge-outline badge-success">Paid</span>
                   )}
                 </td>
               </tr>

@@ -1,4 +1,5 @@
 const PaymentHistory = () => {
+  
   const payments = [
     {
       id: 1,

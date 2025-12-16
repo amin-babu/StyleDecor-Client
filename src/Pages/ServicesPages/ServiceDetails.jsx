@@ -56,6 +56,7 @@ const ServiceDetails = () => {
         console.log(res.data);
         reset();
         toast.success("Booking successful");
+        navigate('/dashboard/my-booking');
       })
       .catch((error) => {
         console.error(error);
