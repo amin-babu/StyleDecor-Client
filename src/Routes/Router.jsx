@@ -15,6 +15,12 @@ import MyBookings from "../Pages/DashBoard/MyBookings";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory";
 import PaymentSuccess from "../Pages/DashBoard/PaymentSuccess";
 import PaymentCancel from "../Pages/DashBoard/PaymentCancel";
+import About from "../Pages/Others/About";
+import Contact from "../Pages/Others/Contact";
+import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
+import NotFound from "../Pages/Others/NotFound";
+import AdminRoute from "./AdminRoute";
+import ManageServices from "../Pages/DashBoard/Admin/ManageServices";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +44,18 @@ export const router = createBrowserRouter([
         element: <PrivateRoute>
           <Profile />
         </PrivateRoute>
+      },
+      {
+        path: '/about',
+        Component: About
+      },
+      {
+        path: '/contact',
+        Component: Contact
+      },
+      {
+        path: '/*',
+        Component: NotFound
       }
     ]
   },
@@ -72,6 +90,18 @@ export const router = createBrowserRouter([
       {
         path: 'my-booking',
         Component: MyBookings
+      },
+      {
+        path: 'manage-users',
+        element: <AdminRoute>
+          <ManageUsers />
+        </AdminRoute>
+      },
+      {
+        path: 'manage-services',
+        element: <AdminRoute>
+          <ManageServices />
+        </AdminRoute>
       },
       {
         path: 'payment-history',

@@ -41,13 +41,7 @@ const MyBookings = () => {
               refetch();
             }
           })
-          .catch(() => {
-            Swal.fire({
-              title: "Failed",
-              text: "Unable to cancel the booking. Please try again.",
-              icon: "error"
-            });
-          });
+          
       }
     });
   };

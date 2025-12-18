@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 const Navbar = () => {
 
   const { user, logOut } = useAuth();
-  console.log(user?.displayName);
+  // console.log(user?.displayName);
 
   const logOutUser = () => {
     logOut();
@@ -34,9 +34,9 @@ const Navbar = () => {
       {
         user ?
           <div className='md:hidden border-gray-200'>
-            <button className='btn'>
-              <Link to='/dashboard'>Dashboard</Link>
-            </button>
+            <Link to='/dashboard' className='btn'>
+              Dashboard
+            </Link>
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 {

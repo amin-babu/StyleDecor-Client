@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import ServiceCard from '../../Components/ServiceCard';
 import Loading from '../../Components/Loading';
+import { useQuery } from '@tanstack/react-query';
 
 const ServicesPage = () => {
-  const [services, setServices] = useState([]);
   const axiosSecure = useAxiosSecure();
-  const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
-
-  useEffect(() => {
-    axiosSecure.get("/services")
-      .then(res => {
-        setServices(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, [axiosSecure]);
+  const { data: services = [], isLoading, refetch } = useQuery({
+    queryKey: ['services'],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/services`);
+      return res.data;
+    }
+  });
 
   const filteredServices = services.filter(service => {
     const matchesSearch = service.title
@@ -37,6 +31,7 @@ const ServicesPage = () => {
     const price = service.price;
     const matchesMin = minPrice ? price >= minPrice : true;
     const matchesMax = maxPrice ? price <= maxPrice : true;
+    refetch();
 
     return matchesSearch && matchesCategory && matchesMin && matchesMax;
   });
@@ -94,7 +89,7 @@ const ServicesPage = () => {
 
         {/* Grid Layout */}
         {
-          loading ? <Loading /> : (
+          isLoading ? <Loading /> : (
             <div className="grid grid-cols-1 mt-4 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {filteredServices.map((service) => (
                 <ServiceCard key={service._id} service={service} />

@@ -5,6 +5,7 @@ import { FaEye } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const Login = () => {
 
@@ -13,6 +14,8 @@ const Login = () => {
   const { signInUser, signInGoogle } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+
   const {
     register,
     handleSubmit,
@@ -40,9 +43,20 @@ const Login = () => {
   const logInGoogle = () => {
     signInGoogle()
       .then(res => {
-        console.log('Google sign in successfull', res);
-        navigate(location?.state || '/');
-        toast.success('Log in success');
+
+        const userDetails = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL
+        };
+
+        axiosSecure.post('/users', userDetails)
+          .then(res => {
+            console.log('User data has been stored', res.data);
+            navigate(location?.state || '/');
+            toast.success('Log in success');
+          })
+
       })
       .catch(err => {
         console.log(err);

@@ -7,6 +7,7 @@ import useAuth from '../../Hooks/useAuth';
 import { TbFidgetSpinner } from 'react-icons/tb';
 import { imageUpload } from '../../Utils';
 import toast from 'react-hot-toast';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const Register = () => {
 
@@ -14,6 +15,7 @@ const Register = () => {
   const { registerUser, setUser, user, signInGoogle, updateUserProfile } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -33,6 +35,21 @@ const Register = () => {
     registerUser(email, password)
       .then(result => {
         const userInfo = result.user;
+
+
+        // create user in db
+        const userDetails = {
+          email: email,
+          displayName: displayName,
+          photoURL: photoURL
+        };
+        axiosSecure.post('/users', userDetails)
+          .then(res => {
+            if (res.data.insertedId) {
+              console.log('User Created in DB');
+            }
+          })
+
         updateUserProfile({ displayName, photoURL })
           .then(() => {
             setUser({ ...userInfo, displayName, photoURL });
@@ -54,11 +71,24 @@ const Register = () => {
   };
 
   const logInGoogle = () => {
+
     signInGoogle()
       .then(res => {
-        console.log('Google sign in successfull', res);
-        navigate(location?.state || '/');
-        toast.success('Register Successfull');
+
+        const userDetails = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL
+        };
+
+        axiosSecure.post('/users', userDetails)
+          .then(res => {
+            console.log('User data has been stored', res.data);
+            navigate(location?.state || '/');
+            toast.success('Register Successfull');
+          })
+
+        console.log('Google sign in successfull', userDetails);
       })
       .catch(err => {
         console.log(err);

@@ -3,8 +3,7 @@ import useAuth from '../../Hooks/useAuth';
 
 const MyProfile = () => {
 
-
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className="p-6 bg-gray-50 h-[70vh]">
