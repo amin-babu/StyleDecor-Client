@@ -4,8 +4,9 @@ import { Link, Outlet } from 'react-router';
 import { RxDashboard } from "react-icons/rx";
 import { LiaUsersCogSolid } from "react-icons/lia";
 import { IoClipboardOutline } from 'react-icons/io5';
-import { MdOutlinePayment } from "react-icons/md";
+import { MdManageSearch, MdOutlinePayment } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
+import { GoProjectSymlink } from "react-icons/go";
 import { GrServicePlay } from "react-icons/gr";
 import useRole from '../Hooks/useRole';
 
@@ -99,8 +100,18 @@ const DashBoardLayout = () => {
                 <Link to='/dashboard/manage-services'>
                   <li>
                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Services">
-                      <GrServicePlay size={17} />
+                      <GrServicePlay size={15} />
                       <span className="is-drawer-close:hidden">Manage Services</span>
+                    </button>
+                  </li>
+                </Link>
+
+                {/* Manage Bookings */}
+                <Link to='/dashboard/manage-bookings'>
+                  <li>
+                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Bookings">
+                      <MdManageSearch size={22} />
+                      <span className="is-drawer-close:hidden">Manage Bookings</span>
                     </button>
                   </li>
                 </Link>
@@ -108,6 +119,24 @@ const DashBoardLayout = () => {
               </>
             }
 
+            {/* Decorator menus */}
+            {
+              role === 'decorator' && <>
+
+                {/* My Assigned Projects */}
+                <Link to='/dashboard/my-assigned-projects'>
+                  <li>
+                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Assigned Projects">
+                      <GoProjectSymlink size={18} />
+                      <span className="is-drawer-close:hidden">My Assigned Projects</span>
+                    </button>
+                  </li>
+                </Link>
+
+
+
+              </>
+            }
 
           </ul>
         </div>

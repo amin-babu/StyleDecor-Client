@@ -21,6 +21,9 @@ import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers";
 import NotFound from "../Pages/Others/NotFound";
 import AdminRoute from "./AdminRoute";
 import ManageServices from "../Pages/DashBoard/Admin/ManageServices";
+import ManageBookings from "../Pages/DashBoard/Admin/ManageBookings";
+import MyAssignedProjects from "../Pages/DashBoard/Decorator/MyAssignedProjects";
+import DecoratorRoute from "./DecoratorRoute";
 
 export const router = createBrowserRouter([
   {
@@ -104,6 +107,12 @@ export const router = createBrowserRouter([
         </AdminRoute>
       },
       {
+        path: 'manage-bookings',
+        element: <AdminRoute>
+          <ManageBookings />
+        </AdminRoute>
+      },
+      {
         path: 'payment-history',
         Component: PaymentHistory
       },
@@ -114,6 +123,12 @@ export const router = createBrowserRouter([
       {
         path: 'payment-cancelled',
         Component: PaymentCancel
+      },
+      {
+        path: 'my-assigned-projects',
+        element: <DecoratorRoute>
+          <MyAssignedProjects />
+        </DecoratorRoute>
       }
     ]
   }
