@@ -36,7 +36,6 @@ const Register = () => {
       .then(result => {
         const userInfo = result.user;
 
-
         // create user in db
         const userDetails = {
           email: email,
