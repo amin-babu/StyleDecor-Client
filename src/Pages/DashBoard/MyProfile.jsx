@@ -1,9 +1,27 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../../Components/Loading';
 
 const MyProfile = () => {
 
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: userInfo = {}, isLoading: userLoading } = useQuery({
+    queryKey: ["userInfo", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  console.log(userInfo);
+
+  if (userLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="p-6 bg-gray-50 h-[70vh]">
@@ -17,7 +35,7 @@ const MyProfile = () => {
         <div className="relative p-6">
           <div className="flex justify-center -mt-16 mb-4">
             <img
-              src={user?.photoURL}
+              src={userInfo?.photoURL}
               alt="Profile"
               className="w-32 h-32 rounded-full object-cover border-4 border-white shadow"
             />
@@ -25,9 +43,9 @@ const MyProfile = () => {
 
           <div className="text-center space-y-2">
             <h2 className="text-xl font-semibold text-gray-800">{user?.displayName}</h2>
-            <p className="text-gray-500">{user.email}</p>
+            <p className="text-gray-500">{userInfo.email}</p>
             <span className="inline-block mt-2 px-4 py-1 text-sm rounded-full bg-blue-100 text-blue-600">
-              {user.role}
+              {userInfo.role}
             </span>
           </div>
 
