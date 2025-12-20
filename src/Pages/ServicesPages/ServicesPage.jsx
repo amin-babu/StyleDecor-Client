@@ -11,10 +11,10 @@ const ServicesPage = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
-  const { data: services = [], isLoading, refetch } = useQuery({
+  const { data: services = [], isLoading } = useQuery({
     queryKey: ['services'],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/services`);
+      const res = await axiosSecure.get(`/get-all-services`);
       return res.data;
     }
   });
@@ -31,7 +31,6 @@ const ServicesPage = () => {
     const price = service.price;
     const matchesMin = minPrice ? price >= minPrice : true;
     const matchesMax = maxPrice ? price <= maxPrice : true;
-    refetch();
 
     return matchesSearch && matchesCategory && matchesMin && matchesMax;
   });

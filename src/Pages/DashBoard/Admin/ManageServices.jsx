@@ -10,14 +10,23 @@ const ManageServices = () => {
 
   const axiosSecure = useAxiosSecure();
   const [selectedService, setSelectedService] = useState(null);
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
-  const { data: services = [], isLoading, refetch } = useQuery({
-    queryKey: ['manage-services'],
+  const { data = {}, isLoading, refetch } = useQuery({
+    queryKey: ["manage-services", page],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/services`);
+      const res = await axiosSecure.get(
+        `/services?page=${page}&limit=${limit}`
+      );
       return res.data;
-    }
+    },
+    keepPreviousData: true,
   });
+
+  const services = data.services || [];
+  const totalPages = Math.ceil((data.total || 0) / limit);
+
 
   const {
     register,
@@ -156,7 +165,7 @@ const ManageServices = () => {
           <tbody>
             {services.map((service, index) => (
               <tr key={service._id} className="hover">
-                <td>{index + 1}</td>
+                <td><td>{(page - 1) * limit + index + 1}</td></td>
                 <td>
                   <img
                     src={service.imageUrl}
@@ -199,6 +208,22 @@ const ManageServices = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Pagination */}
+      <div className="flex justify-center mt-6">
+        <div className="join">
+          {[...Array(totalPages).keys()].map(num => (
+            <button
+              key={num}
+              className={`join-item btn ${page === num + 1 ? "btn-active" : ""}`}
+              onClick={() => setPage(num + 1)}
+            >
+              {num + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+
 
       {/* Add service Modal */}
       <input type="checkbox" id="add-service-modal" className="modal-toggle" />
