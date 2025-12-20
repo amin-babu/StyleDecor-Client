@@ -38,9 +38,11 @@ const MyAssignedProjects = () => {
   const assignedProjects = allBookings.filter(booking => booking.decoratorId == userInfo?._id);
   console.log('assignedProjects', assignedProjects);
 
+
   const handleUpdateStatus = async (id) => {
     await axiosSecure.patch(`/bookings/status/${id}`, {
       status: selectedStatus,
+      paidAt: new Date()
     });
     refetch();
   };

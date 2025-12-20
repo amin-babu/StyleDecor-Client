@@ -3,12 +3,14 @@ import logoHori from '../assets/logo.png'
 import { Link, Outlet } from 'react-router';
 import { RxDashboard } from "react-icons/rx";
 import { LiaUsersCogSolid } from "react-icons/lia";
-import { IoClipboardOutline } from 'react-icons/io5';
+import { IoClipboardOutline, IoTodayOutline } from 'react-icons/io5';
 import { MdManageSearch, MdOutlinePayment } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { GoProjectSymlink } from "react-icons/go";
 import { GrServicePlay } from "react-icons/gr";
 import useRole from '../Hooks/useRole';
+import { TbMoneybag } from 'react-icons/tb';
+import { RiSecurePaymentFill } from "react-icons/ri";
 
 const DashBoardLayout = () => {
   const { role } = useRole();
@@ -127,13 +129,41 @@ const DashBoardLayout = () => {
                 <Link to='/dashboard/my-assigned-projects'>
                   <li>
                     <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Assigned Projects">
-                      <GoProjectSymlink size={18} />
+                      <GoProjectSymlink size={17} />
                       <span className="is-drawer-close:hidden">My Assigned Projects</span>
                     </button>
                   </li>
                 </Link>
 
+                {/* Today’s Schedule */}
+                <Link to='/dashboard/todays-schedule'>
+                  <li>
+                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Today’s Schedule">
+                      <IoTodayOutline size={16} />
+                      <span className="is-drawer-close:hidden">Today’s Schedule</span>
+                    </button>
+                  </li>
+                </Link>
 
+                {/* Earning Summary */}
+                <Link to='/dashboard/earning-summary'>
+                  <li>
+                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Earning Summary">
+                      <TbMoneybag size={16} />
+                      <span className="is-drawer-close:hidden">Earning Summary</span>
+                    </button>
+                  </li>
+                </Link>
+
+                {/* Payment History */}
+                <Link to='/dashboard/decor-pay-history'>
+                  <li>
+                    <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
+                      <RiSecurePaymentFill size={16} />
+                      <span className="is-drawer-close:hidden">Payment History</span>
+                    </button>
+                  </li>
+                </Link>
 
               </>
             }

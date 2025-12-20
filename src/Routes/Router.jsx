@@ -24,6 +24,9 @@ import ManageServices from "../Pages/DashBoard/Admin/ManageServices";
 import ManageBookings from "../Pages/DashBoard/Admin/ManageBookings";
 import MyAssignedProjects from "../Pages/DashBoard/Decorator/MyAssignedProjects";
 import DecoratorRoute from "./DecoratorRoute";
+import TodaysSchedule from "../Pages/DashBoard/Decorator/TodaysSchedule";
+import EarningsSummary from "../Pages/DashBoard/Decorator/EarningsSummary";
+import DecorPayHistory from "../Pages/DashBoard/Decorator/DecorPayHistory";
 
 export const router = createBrowserRouter([
   {
@@ -129,7 +132,25 @@ export const router = createBrowserRouter([
         element: <DecoratorRoute>
           <MyAssignedProjects />
         </DecoratorRoute>
-      }
+      },
+      {
+        path: 'todays-schedule',
+        element: <DecoratorRoute>
+          <TodaysSchedule />
+        </DecoratorRoute>
+      },
+      {
+        path: 'earning-summary',
+        element: <DecoratorRoute>
+          <EarningsSummary />
+        </DecoratorRoute>
+      },
+      {
+        path: 'decor-pay-history',
+        element: <DecoratorRoute>
+          <DecorPayHistory />
+        </DecoratorRoute>
+      },
     ]
   }
 ]);
