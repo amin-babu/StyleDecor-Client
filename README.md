@@ -45,7 +45,7 @@ The project leverages the following dependencies to ensure performance and scala
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/amin-babu/StyleDecor-Client.git](https://github.com/amin-babu/StyleDecor-Client.git)
+    git clone https://github.com/amin-babu/StyleDecor-Client.git
     ```
 
 2.  **Navigate and Install Dependencies:**
